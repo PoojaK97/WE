@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private int SLEEP_TIMER = 3;
+    private int SLEEP_TIMER = 5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +29,7 @@ public class SplashScreen extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Intent intent = new Intent(SplashScreen.this,MainActivity.class);
+            Intent intent = new Intent(SplashScreen.this,ForgotPassword.class);
             startActivity(intent);
             SplashScreen.this.finish();
         }
