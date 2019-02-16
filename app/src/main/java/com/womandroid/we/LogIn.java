@@ -1,6 +1,6 @@
 package com.womandroid.we;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class LogIn extends AppCompatActivity {

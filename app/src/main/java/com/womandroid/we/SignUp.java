@@ -2,8 +2,6 @@ package com.womandroid.we;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -21,6 +19,9 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -37,7 +38,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         mAuth = FirebaseAuth.getInstance();
-        if (mAuth.getCurrentUser()!=null){
+        if (mAuth.getCurrentUser() != null) {
             Intent intent = new Intent(getApplicationContext(), Dashboard.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
@@ -56,7 +57,7 @@ public class SignUp extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (view==register)
+                if (view == register)
                     userSignUp();
             }
         });
@@ -64,7 +65,7 @@ public class SignUp extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (view==login){
+                if (view == login) {
                     finish();
 
                 }
@@ -73,17 +74,17 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-    private void userSignUp(){
-        String mEmail=email.getText().toString().trim();
-        String mPassword =password.getText().toString().trim();
-        String mConfirmPassword=confirmPassword.getText().toString().trim();
+    private void userSignUp() {
+        String mEmail = email.getText().toString().trim();
+        String mPassword = password.getText().toString().trim();
+        String mConfirmPassword = confirmPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(mEmail)) {
             Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
             email.requestFocus();
             return;
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(mEmail).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(mEmail).matches()) {
             Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
             email.requestFocus();
             return;
@@ -93,7 +94,7 @@ public class SignUp extends AppCompatActivity {
             password.requestFocus();
             return;
         }
-        if (mPassword.length()<6){
+        if (mPassword.length() < 6) {
             password.setError("Minimum length of password should be 6");
             password.requestFocus();
             return;
@@ -119,10 +120,9 @@ public class SignUp extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(SignUp.this, "Woo-hoo! Successfully registered", Toast.LENGTH_SHORT).show();
                         } else {
-                            if (task.getException()instanceof FirebaseAuthUserCollisionException){
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                                 Toast.makeText(SignUp.this, "Email is already registered", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(getApplicationContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
