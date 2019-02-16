@@ -8,7 +8,6 @@
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>
     <color name="bg_main">#428bca</color>
-    <color name="white">#ffffff</color>
     <color name="input_login">#222222</color>
     <color name="input_login_hint">#999999</color>
     <color name="input_register">#888888</color>
@@ -21,4 +20,11 @@
 
     <color name="true_color">#129f05</color>
     <color name="false_color">#d50000</color>
+
+
+    <color name="me_color">#abcff4</color>
+    <color name="reply_color">#d7d4d3</color>
+    <color name="chat_bg">#e3e3e3</color>
+    <color name="chat_blue">@color/sdkPrimary</color>
+    <color name="logout">#ae2020</color>
 </resources>

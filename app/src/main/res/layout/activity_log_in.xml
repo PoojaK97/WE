@@ -37,7 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
         tools:textColor="@color/colorAccent"
-        tools:textColorHighlight="@color/white" />
+        tools:textColorHighlight="@android:color/white" />
 
     <EditText
         android:id="@+id/password"
@@ -55,7 +55,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_field"
         tools:textColor="@color/colorAccent"
-        tools:textColorHighlight="@color/white" />
+        tools:textColorHighlight="@android:color/white" />
 
     <TextView
         android:id="@+id/forgot_password"
