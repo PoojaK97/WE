@@ -67,6 +67,14 @@
           }
         },
         {
+          "client_id": "537713337695-kspvvoeb5oiu9gjvhve4auva2bvkfpss.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.womandroid.we",
+            "certificate_hash": "8eb41c14354afd95452003ebf9eb431b85e9baa4"
+          }
+        },
+        {
           "client_id": "537713337695-ujvvok2dlfo6inhjg01n9d6mv75h8a03.apps.googleusercontent.com",
           "client_type": 3
         }
