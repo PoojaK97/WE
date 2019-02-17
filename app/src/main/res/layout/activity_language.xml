@@ -4,6 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/yellow"
     tools:context=".Language">
+
+    <Spinner
+        android:id="@+id/spin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/language"
+        android:textColor="#3D77B0"
+        android:textSize="11dp"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="249dp"
+        ></Spinner>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="#3D77B0"
+
+        android:text="Choose your language"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="145dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

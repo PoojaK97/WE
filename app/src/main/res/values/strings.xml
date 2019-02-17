@@ -25,6 +25,16 @@
     <string name="page_4_heading">Enter Details</string>
     <string name="page_6_heading">User Profile</string>
 
+    <string name="page_7_heading">Language</string>
+
+    <string name="language_page">Salect language</string>
+    <color name="yellow">#FCFF52</color>
+    <string-array name="language">
+
+        <item>Hindi</item>
+        <item>English</item>
+    </string-array>
+
     <!--<string name="facebook_app_identifier">648056098576150</string>-->
 
     <!--<string name="twitter_key">Kqprq5b6bVeEfcMAGoHzUmB3I</string>-->
