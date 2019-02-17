@@ -12,6 +12,8 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import java.io.File;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.session.ChatSDK;
 import com.womandroid.we.chatSDK.core.utils.ImageUtils;
 import com.womandroid.we.chatSDK.ui.chat.PhotoProvider;
@@ -146,7 +148,7 @@ public class MediaSelector {
                 handleImageFile(activity, result.getUri().getPath());
             }
             catch (NullPointerException e){
-                throw new Exception(activity.getString(com.womandroid.we.R.string.unable_to_fetch_image));
+                throw new Exception(activity.getString(R.string.unable_to_fetch_image));
             }
         }
 

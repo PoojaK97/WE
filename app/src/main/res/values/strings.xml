@@ -27,12 +27,12 @@
 
     <string name="page_7_heading">Language</string>
 
-    <string name="language_page">Salect language</string>
+    <string name="language_page">Select language</string>
     <color name="yellow">#FCFF52</color>
     <string-array name="language">
 
-        <item>Hindi</item>
         <item>English</item>
+        <item>Hindi</item>
     </string-array>
 
     <!--<string name="facebook_app_identifier">648056098576150</string>-->
@@ -215,8 +215,8 @@
 
     <!--Acceptability-->
     <string name="acces_message_option_button">Message option button</string>
-
-    <string name="chat_sdk__action_settings">action_setting</string>
+Chat
+    <string name="chat_sdk__action_settings">Settings</string>
     <string name="action_logout">Logout</string>
     <string name="action_save">Save</string>
     <string name="action_chat">Chat</string>
@@ -411,4 +411,5 @@
     <string name="uploading_picture">Uploading Picture</string>
     <string name="updating_pictures">Updating Pictures</string>
     <string name="deleting_picture">Deleting Picture</string>
+    <string name="choose_lang">Choose your language</string>
 </resources>

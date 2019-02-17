@@ -21,6 +21,8 @@ import java.util.List;
 
 import androidx.annotation.LayoutRes;
 import androidx.viewpager.widget.ViewPager;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.Tab;
 import com.womandroid.we.chatSDK.core.events.EventType;
 import com.womandroid.we.chatSDK.core.events.NetworkEvent;
@@ -102,13 +104,13 @@ public class MainActivity extends BaseActivity {
     }
 
     protected @LayoutRes int activityLayout() {
-        return com.womandroid.we.R.layout.chat_sdk_activity_view_pager;
+        return R.layout.chat_sdk_activity_view_pager;
     }
 
     protected void initViews() {
-        viewPager = findViewById(com.womandroid.we.R.id.pager);
+        viewPager = findViewById(R.id.pager);
 
-        tabLayout = findViewById(com.womandroid.we.R.id.tab_layout);
+        tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
         // Only creates the adapter if it wasn't initiated already
@@ -191,7 +193,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == com.womandroid.we.R.id.contact_developer) {
+        if (item.getItemId() == R.id.contact_developer) {
 
             String emailAddress = ChatSDK.config().contactDeveloperEmailAddress;
             String subject = ChatSDK.config().contactDeveloperEmailSubject;

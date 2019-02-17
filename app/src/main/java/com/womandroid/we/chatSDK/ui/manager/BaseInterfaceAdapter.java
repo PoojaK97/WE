@@ -20,6 +20,8 @@ import java.util.Set;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.Tab;
 import com.womandroid.we.chatSDK.core.dao.User;
 import com.womandroid.we.chatSDK.core.dao.Thread;
@@ -104,22 +106,22 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
 
     @Override
     public Tab privateThreadsTab() {
-        return new Tab(com.womandroid.we.R.string.conversations, com.womandroid.we.R.drawable.ic_action_private, privateThreadsFragment());
+        return new Tab(R.string.conversations, R.drawable.ic_action_private, privateThreadsFragment());
     }
 
     @Override
     public Tab publicThreadsTab() {
-        return new Tab(com.womandroid.we.R.string.chat_rooms, com.womandroid.we.R.drawable.ic_action_public, publicThreadsFragment());
+        return new Tab(R.string.chat_rooms, R.drawable.ic_action_public, publicThreadsFragment());
     }
 
     @Override
     public Tab contactsTab() {
-        return new Tab(com.womandroid.we.R.string.contacts, com.womandroid.we.R.drawable.ic_action_contacts, contactsFragment());
+        return new Tab(R.string.contacts, R.drawable.ic_action_contacts, contactsFragment());
     }
 
     @Override
     public Tab profileTab() {
-        return new Tab (com.womandroid.we.R.string.profile, com.womandroid.we.R.drawable.ic_action_user, profileFragment(null));
+        return new Tab (R.string.profile, R.drawable.ic_action_user, profileFragment(null));
     }
 
     @Override

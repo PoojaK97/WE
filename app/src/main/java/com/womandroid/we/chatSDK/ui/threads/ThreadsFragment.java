@@ -17,6 +17,8 @@ import java.util.List;
 import androidx.annotation.LayoutRes;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.dao.User;
 import com.womandroid.we.chatSDK.core.dao.Thread;
 import com.womandroid.we.chatSDK.core.events.EventType;
@@ -77,12 +79,12 @@ public abstract class ThreadsFragment extends BaseFragment {
     protected abstract Predicate<NetworkEvent> mainEventFilter ();
 
     protected  @LayoutRes int activityLayout () {
-        return com.womandroid.we.R.layout.chat_sdk_activity_threads;
+        return R.layout.chat_sdk_activity_threads;
     }
 
     public void initViews() {
-        searchField = mainView.findViewById(com.womandroid.we.R.id.search_field);
-        listThreads = mainView.findViewById(com.womandroid.we.R.id.list_threads);
+        searchField = mainView.findViewById(R.id.search_field);
+        listThreads = mainView.findViewById(R.id.list_threads);
 
         adapter = new ThreadsListAdapter(getActivity());
 
@@ -102,9 +104,9 @@ public abstract class ThreadsFragment extends BaseFragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         if (allowThreadCreation()) {
-            addMenuItem = menu.add(Menu.NONE, com.womandroid.we.R.id.action_chat_sdk_add, 10, getString(com.womandroid.we.R.string.thread_fragment_add_item_text));
+            addMenuItem = menu.add(Menu.NONE, R.id.action_chat_sdk_add, 10, getString(R.string.thread_fragment_add_item_text));
             addMenuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-            addMenuItem.setIcon(com.womandroid.we.R.drawable.ic_plus);
+            addMenuItem.setIcon(R.drawable.ic_plus);
         }
     }
 

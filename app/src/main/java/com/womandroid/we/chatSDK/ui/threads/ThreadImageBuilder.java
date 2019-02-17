@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.dao.User;
 import com.womandroid.we.chatSDK.core.interfaces.ThreadType;
 import com.womandroid.we.chatSDK.core.session.ChatSDK;
@@ -52,7 +53,7 @@ public class ThreadImageBuilder {
 
             // If the URL is empty
             if (urls.size() == 0) {
-                e.onError(new Throwable(context.getString(com.womandroid.we.R.string.thread_users_have_no_valid_avatar_urls)));
+                e.onError(new Throwable(context.getString(R.string.thread_users_have_no_valid_avatar_urls)));
             }
             else if (urls.size() == 1) {
                 e.onSuccess(Uri.parse(urls.get(0)));
@@ -64,7 +65,7 @@ public class ThreadImageBuilder {
                         e.onSuccess(Uri.fromFile(file));
                     }
                     else {
-                        e.onError(new Throwable(context.getString(com.womandroid.we.R.string.could_not_save_composite_thread_image_to_file)));
+                        e.onError(new Throwable(context.getString(R.string.could_not_save_composite_thread_image_to_file)));
                     }
                 }, throwable -> e.onError(throwable));
             }
@@ -86,11 +87,11 @@ public class ThreadImageBuilder {
 
             Single.merge(singles).observeOn(AndroidSchedulers.mainThread())
                     .doOnComplete(() -> {
-                        int size = context.getResources().getDimensionPixelSize(com.womandroid.we.R.dimen.chat_sdk_chat_action_barcircle_image_view_size);
+                        int size = context.getResources().getDimensionPixelSize(R.dimen.chat_sdk_chat_action_barcircle_image_view_size);
                         Bitmap bitmap = ImageUtils.getMixImagesBitmap(size, size, bitmaps);
 
                         if(bitmap == null) {
-                            e.onError(new Throwable(context.getString(com.womandroid.we.R.string.thread_image_could_not_be_created)));
+                            e.onError(new Throwable(context.getString(R.string.thread_image_could_not_be_created)));
                         }
                         else {
                             e.onSuccess(bitmap);
@@ -105,10 +106,10 @@ public class ThreadImageBuilder {
 
     public static int defaultBitmapResId (Thread thread) {
         if (thread.typeIs(ThreadType.Private1to1)) {
-            return com.womandroid.we.R.drawable.icn_100_private_thread;
+            return R.drawable.icn_100_private_thread;
         }
         else {
-            return com.womandroid.we.R.drawable.icn_100_public_thread;
+            return R.drawable.icn_100_public_thread;
         }
     }
 

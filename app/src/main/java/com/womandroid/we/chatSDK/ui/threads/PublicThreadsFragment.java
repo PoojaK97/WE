@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.dao.Thread;
 import com.womandroid.we.chatSDK.core.events.NetworkEvent;
 import com.womandroid.we.chatSDK.core.interfaces.ThreadType;
@@ -46,10 +47,10 @@ public class PublicThreadsFragment extends ThreadsFragment {
         /* Cant use switch in the library*/
         int id = item.getItemId();
 
-        if (id == com.womandroid.we.R.id.action_chat_sdk_add)
+        if (id == R.id.action_chat_sdk_add)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
-            builder.setTitle(getString(com.womandroid.we.R.string.add_public_chat_dialog_title));
+            builder.setTitle(getString(R.string.add_public_chat_dialog_title));
 
             // Set up the input
             final EditText input = new EditText(this.getContext());
@@ -58,9 +59,9 @@ public class PublicThreadsFragment extends ThreadsFragment {
             builder.setView(input);
 
             // Set up the buttons
-            builder.setPositiveButton(getString(com.womandroid.we.R.string.create), (dialog, which) -> {
+            builder.setPositiveButton(getString(R.string.create), (dialog, which) -> {
 
-                showOrUpdateProgressDialog(getString(com.womandroid.we.R.string.add_public_chat_dialog_progress_message));
+                showOrUpdateProgressDialog(getString(R.string.add_public_chat_dialog_progress_message));
                 final String threadName = input.getText().toString();
 
                 ChatSDK.publicThread().createPublicThreadWithName(threadName)
@@ -70,7 +71,7 @@ public class PublicThreadsFragment extends ThreadsFragment {
                                 dismissProgressDialog();
                                 adapter.addRow(thread);
 
-                                ToastHelper.show(getContext(), String.format(getString(com.womandroid.we.R.string.public_thread__is_created), threadName));
+                                ToastHelper.show(getContext(), String.format(getString(R.string.public_thread__is_created), threadName));
 
                                 ChatSDK.ui().startChatActivityForID(getContext(), thread.getEntityID());
                             }
@@ -81,7 +82,7 @@ public class PublicThreadsFragment extends ThreadsFragment {
                         });
 
             });
-            builder.setNegativeButton(com.womandroid.we.R.string.cancel, (dialog, which) -> dialog.cancel());
+            builder.setNegativeButton(R.string.cancel, (dialog, which) -> dialog.cancel());
 
             builder.show();
 

@@ -26,6 +26,8 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.dao.User;
 import com.womandroid.we.chatSDK.core.interfaces.UserListItem;
 import com.womandroid.we.chatSDK.core.session.ChatSDK;
@@ -70,14 +72,14 @@ public class SearchActivity extends BaseActivity {
     }
 
     protected @LayoutRes int activityLayout() {
-        return com.womandroid.we.R.layout.chat_sdk_activity_search;
+        return R.layout.chat_sdk_activity_search;
     }
 
     protected void initViews() {
-        searchImageView = findViewById(com.womandroid.we.R.id.chat_sdk_btn_search);
-        addContactsButton = findViewById(com.womandroid.we.R.id.chat_sdk_btn_add_contacts);
-        searchTextView = findViewById(com.womandroid.we.R.id.chat_sdk_et_search_input);
-        recyclerView = findViewById(com.womandroid.we.R.id.chat_sdk_list_search_results);
+        searchImageView = findViewById(R.id.chat_sdk_btn_search);
+        addContactsButton = findViewById(R.id.chat_sdk_btn_add_contacts);
+        searchTextView = findViewById(R.id.chat_sdk_et_search_input);
+        recyclerView = findViewById(R.id.chat_sdk_list_search_results);
     }
 
     @Override
@@ -121,7 +123,7 @@ public class SearchActivity extends BaseActivity {
 
             if (adapter.getSelectedCount() == 0)
             {
-                showToast(getString(com.womandroid.we.R.string.search_activity_no_contact_selected_toast));
+                showToast(getString(R.string.search_activity_no_contact_selected_toast));
                 return;
             }
 
@@ -134,13 +136,13 @@ public class SearchActivity extends BaseActivity {
             }
 
             final ProgressDialog dialog = new ProgressDialog(com.womandroid.we.chatSDK.ui.search.SearchActivity.this);
-            dialog.setMessage(getString(com.womandroid.we.R.string.alert_save_contact));
+            dialog.setMessage(getString(R.string.alert_save_contact));
             dialog.show();
 
             Completable.merge(completables)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(() -> {
-                        showToast(adapter.getSelectedCount() + " " + getString(com.womandroid.we.R.string.search_activity_user_added_as_contact_after_count_toast));
+                        showToast(adapter.getSelectedCount() + " " + getString(R.string.search_activity_user_added_as_contact_after_count_toast));
 
                         disposableList.dispose();
 
@@ -159,12 +161,12 @@ public class SearchActivity extends BaseActivity {
         public void onClick(View v) {
             if (searchTextView.getText().toString().isEmpty())
             {
-                showToast(getString(com.womandroid.we.R.string.search_activity_no_text_input_toast));
+                showToast(getString(R.string.search_activity_no_text_input_toast));
                 return;
             }
 
             final ProgressDialog dialog = new ProgressDialog(com.womandroid.we.chatSDK.ui.search.SearchActivity.this);
-            dialog.setMessage(getString(com.womandroid.we.R.string.search_activity_prog_dialog_init_message));
+            dialog.setMessage(getString(R.string.search_activity_prog_dialog_init_message));
             dialog.show();
 
             // Clear the list of users
@@ -203,7 +205,7 @@ public class SearchActivity extends BaseActivity {
                 public void onComplete() {
                     dialog.dismiss();
                     if (users.size() == 0) {
-                        showToast(getString(com.womandroid.we.R.string.search_activity_no_user_found_toast));
+                        showToast(getString(R.string.search_activity_no_user_found_toast));
                     }
                 }
             });
@@ -218,7 +220,7 @@ public class SearchActivity extends BaseActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
             final List<SearchActivityType> activities = new ArrayList<>(ChatSDK.ui().getSearchActivities());
-            activities.add(new SearchActivityType(ChatSDK.ui().getSearchActivity(), context.getString(com.womandroid.we.R.string.search_with_name)));
+            activities.add(new SearchActivityType(ChatSDK.ui().getSearchActivity(), context.getString(R.string.search_with_name)));
 
             if (activities.size() == 1) {
                 ChatSDK.ui().startActivity(context, activities.get(0).className);
@@ -232,7 +234,7 @@ public class SearchActivity extends BaseActivity {
                 items[i++] = activity.title;
             }
 
-            builder.setTitle(context.getString(com.womandroid.we.R.string.search)).setItems(items, (dialogInterface, i1) -> {
+            builder.setTitle(context.getString(R.string.search)).setItems(items, (dialogInterface, i1) -> {
                 // Launch the appropriate context
                 ChatSDK.ui().startActivity(context, activities.get(i1).className);
             });

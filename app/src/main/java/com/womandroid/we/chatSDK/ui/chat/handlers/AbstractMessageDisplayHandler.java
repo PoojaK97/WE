@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.interfaces.MessageDisplayHandler;
 
 public abstract class AbstractMessageDisplayHandler implements MessageDisplayHandler {
@@ -12,9 +13,9 @@ public abstract class AbstractMessageDisplayHandler implements MessageDisplayHan
         View row;
         LayoutInflater inflater = LayoutInflater.from(activity);
         if(isReply) {
-            row = inflater.inflate(com.womandroid.we.R.layout.chat_sdk_row_message_reply , null);
+            row = inflater.inflate(R.layout.chat_sdk_row_message_reply , null);
         } else {
-            row = inflater.inflate(com.womandroid.we.R.layout.chat_sdk_row_message_me , null);
+            row = inflater.inflate(R.layout.chat_sdk_row_message_me , null);
         }
         return row;
     }

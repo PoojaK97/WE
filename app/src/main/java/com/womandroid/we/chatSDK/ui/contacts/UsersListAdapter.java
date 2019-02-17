@@ -23,6 +23,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.dao.User;
 import com.womandroid.we.chatSDK.core.interfaces.UserListItem;
 import com.womandroid.we.chatSDK.ui.utils.AvailabilityHelper;
@@ -49,7 +51,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(com.womandroid.we.R.id.header_text);
+            textView = itemView.findViewById(R.id.header_text);
         }
     }
 
@@ -64,11 +66,11 @@ public class UsersListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public UserViewHolder(View view) {
             super(view);
 
-            nameTextView = view.findViewById(com.womandroid.we.R.id.chat_sdk_txt);
-            statusTextView = view.findViewById(com.womandroid.we.R.id.tvStatus);
-            availabilityImageView = view.findViewById(com.womandroid.we.R.id.ivAvailability);
-            avatarImageView = view.findViewById(com.womandroid.we.R.id.img_profile_picture);
-            checkBox = view.findViewById(com.womandroid.we.R.id.checkbox);
+            nameTextView = view.findViewById(R.id.chat_sdk_txt);
+            statusTextView = view.findViewById(R.id.tvStatus);
+            availabilityImageView = view.findViewById(R.id.ivAvailability);
+            avatarImageView = view.findViewById(R.id.img_profile_picture);
+            checkBox = view.findViewById(R.id.checkbox);
 
             // Clicks are handled at the list item level
             checkBox.setClickable(false);
@@ -115,11 +117,11 @@ public class UsersListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         if(viewType == TYPE_HEADER) {
-            View row = inflater.inflate(com.womandroid.we.R.layout.chat_sdk_row_header, null);
+            View row = inflater.inflate(R.layout.chat_sdk_row_header, null);
             return new HeaderViewHolder(row);
         }
         else if (viewType == TYPE_USER) {
-            View row = inflater.inflate(com.womandroid.we.R.layout.chat_sdk_row_contact, null);
+            View row = inflater.inflate(R.layout.chat_sdk_row_contact, null);
             return new UserViewHolder(row);
         }
         return null;

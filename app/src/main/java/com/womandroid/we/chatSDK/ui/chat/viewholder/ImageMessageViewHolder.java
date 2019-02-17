@@ -9,6 +9,7 @@ import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.dao.Keys;
 import com.womandroid.we.chatSDK.core.dao.Message;
 import com.womandroid.we.chatSDK.ui.chat.BaseMessageViewHolder;
@@ -42,7 +43,7 @@ public class ImageMessageViewHolder extends BaseMessageViewHolder {
                             .build());
         } else {
             // Loads the placeholder
-            messageImageView.setActualImageResource(com.womandroid.we.R.drawable.icn_200_image_message_loading);
+            messageImageView.setActualImageResource(R.drawable.icn_200_image_message_loading);
         }
     }
 

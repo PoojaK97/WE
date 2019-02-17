@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.dao.User;
 import com.womandroid.we.chatSDK.core.dao.Thread;
 import com.womandroid.we.chatSDK.core.session.ChatSDK;
@@ -30,30 +31,30 @@ public class ProfileActivity extends BaseActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.womandroid.we.R.layout.chat_sdk_profile_activity);
+        setContentView(R.layout.chat_sdk_profile_activity);
 
         String userEntityID = getIntent().getStringExtra(InterfaceManager.USER_ENTITY_ID);
 
         if (userEntityID != null && !userEntityID.isEmpty()) {
             user =  StorageManager.shared().fetchUserWithEntityID(userEntityID);
             if (user != null) {
-                ProfileFragment fragment = (ProfileFragment) getSupportFragmentManager().findFragmentById(com.womandroid.we.R.id.profile_fragment);
+                ProfileFragment fragment = (ProfileFragment) getSupportFragmentManager().findFragmentById(R.id.profile_fragment);
                 fragment.setUser(user);
                 fragment.updateInterface();
                 return;
             }
         }
 
-        ToastHelper.show(this, com.womandroid.we.R.string.user_entity_id_not_set);
+        ToastHelper.show(this, R.string.user_entity_id_not_set);
         finish();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        chatMenuItem = menu.add(Menu.NONE, com.womandroid.we.R.id.action_chat_sdk_chat, 1, getString(com.womandroid.we.R.string.action_chat));
+        chatMenuItem = menu.add(Menu.NONE, R.id.action_chat_sdk_chat, 1, getString(R.string.action_chat));
         chatMenuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        chatMenuItem.setIcon(com.womandroid.we.R.drawable.icn_24_chat);
+        chatMenuItem.setIcon(R.drawable.icn_24_chat);
 
         return true;
     }
@@ -64,7 +65,7 @@ public class ProfileActivity extends BaseActivity {
         /* Cant use switch in the library*/
         int id = item.getItemId();
 
-        if (id == com.womandroid.we.R.id.action_chat_sdk_chat) {
+        if (id == R.id.action_chat_sdk_chat) {
             startChat();
             return true;
         }
@@ -80,7 +81,7 @@ public class ProfileActivity extends BaseActivity {
 
         startingChat = true;
 
-        showProgressDialog(getString(com.womandroid.we.R.string.creating_thread));
+        showProgressDialog(getString(R.string.creating_thread));
 
 
         disposableList.add(ChatSDK.thread().createThread("", user, ChatSDK.currentUser())

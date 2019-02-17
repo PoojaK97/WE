@@ -95,7 +95,7 @@ public class ProfileFragment extends BaseFragment {
 
         mainView = inflater.inflate(activityLayout(), null);
 
-        setupTouchUIToDismissKeyboard(mainView, com.womandroid.we.R.id.ivAvatar);
+        setupTouchUIToDismissKeyboard(mainView, R.id.ivAvatar);
 
         initViews();
 
@@ -103,33 +103,33 @@ public class ProfileFragment extends BaseFragment {
     }
 
     protected @LayoutRes int activityLayout() {
-        return com.womandroid.we.R.layout.chat_sdk_profile_fragment;
+        return R.layout.chat_sdk_profile_fragment;
     }
 
     public void initViews() {
-        avatarImageView = mainView.findViewById(com.womandroid.we.R.id.ivAvatar);
-        flagImageView = mainView.findViewById(com.womandroid.we.R.id.ivFlag);
-        availabilityImageView = mainView.findViewById(com.womandroid.we.R.id.ivAvailability);
-        nameTextView = mainView.findViewById(com.womandroid.we.R.id.tvName);
-        statusTextView = mainView.findViewById(com.womandroid.we.R.id.tvStatus);
+        avatarImageView = mainView.findViewById(R.id.ivAvatar);
+        flagImageView = mainView.findViewById(R.id.ivFlag);
+        availabilityImageView = mainView.findViewById(R.id.ivAvailability);
+        nameTextView = mainView.findViewById(R.id.tvName);
+        statusTextView = mainView.findViewById(R.id.tvStatus);
 
-        locationTextView = mainView.findViewById(com.womandroid.we.R.id.tvLocation);
-        phoneTextView = mainView.findViewById(com.womandroid.we.R.id.tvPhone);
-        emailTextView = mainView.findViewById(com.womandroid.we.R.id.tvEmail);
-        followsTextView = mainView.findViewById(com.womandroid.we.R.id.tvFollows);
-        followedTextView = mainView.findViewById(com.womandroid.we.R.id.tvFollowed);
-        blockOrUnblockButton = mainView.findViewById(com.womandroid.we.R.id.btnBlockOrUnblock);
-        addOrDeleteButton = mainView.findViewById(com.womandroid.we.R.id.btnAddOrDelete);
+        locationTextView = mainView.findViewById(R.id.tvLocation);
+        phoneTextView = mainView.findViewById(R.id.tvPhone);
+        emailTextView = mainView.findViewById(R.id.tvEmail);
+        followsTextView = mainView.findViewById(R.id.tvFollows);
+        followedTextView = mainView.findViewById(R.id.tvFollowed);
+        blockOrUnblockButton = mainView.findViewById(R.id.btnBlockOrUnblock);
+        addOrDeleteButton = mainView.findViewById(R.id.btnAddOrDelete);
 
 //        followsHeight = followsTextView.getHeight();
 //        followedHeight = followedTextView.getHeight();
 
-        locationImageView = mainView.findViewById(com.womandroid.we.R.id.ivLocation);
-        phoneImageView = mainView.findViewById(com.womandroid.we.R.id.ivPhone);
-        emailImageView = mainView.findViewById(com.womandroid.we.R.id.ivEmail);
+        locationImageView = mainView.findViewById(R.id.ivLocation);
+        phoneImageView = mainView.findViewById(R.id.ivPhone);
+        emailImageView = mainView.findViewById(R.id.ivEmail);
 
-        followsImageView = mainView.findViewById(com.womandroid.we.R.id.ivFollows);
-        followedImageView = mainView.findViewById(com.womandroid.we.R.id.ivFollowed);
+        followsImageView = mainView.findViewById(R.id.ivFollows);
+        followedImageView = mainView.findViewById(R.id.ivFollowed);
 
         if (ChatSDK.profilePictures() != null) {
             avatarImageView.setOnClickListener(v -> {
@@ -172,17 +172,17 @@ public class ProfileFragment extends BaseFragment {
 
     protected void updateBlockedButton(boolean blocked) {
         if (blocked) {
-            setViewText(blockOrUnblockButton, getString(com.womandroid.we.R.string.unblock));
+            setViewText(blockOrUnblockButton, getString(R.string.unblock));
         } else {
-            setViewText(blockOrUnblockButton, getString(com.womandroid.we.R.string.block));
+            setViewText(blockOrUnblockButton, getString(R.string.block));
         }
     }
 
     protected void updateFriendsButton(boolean friend) {
         if (friend) {
-            setViewText(addOrDeleteButton, getString(com.womandroid.we.R.string.delete_contact));
+            setViewText(addOrDeleteButton, getString(R.string.delete_contact));
         } else {
-            setViewText(addOrDeleteButton, getString(com.womandroid.we.R.string.add_contacts));
+            setViewText(addOrDeleteButton, getString(R.string.add_contacts));
         }
     }
 
@@ -200,7 +200,7 @@ public class ProfileFragment extends BaseFragment {
                 .subscribe(() -> {
                     updateBlockedButton(true);
                     updateInterface();
-                    ToastHelper.show(getContext(), getString(com.womandroid.we.R.string.user_blocked));
+                    ToastHelper.show(getContext(), getString(R.string.user_blocked));
                 }, throwable1 -> {
                     ChatSDK.logError(throwable1);
                     Toast.makeText(com.womandroid.we.chatSDK.ui.profile.ProfileFragment.this.getContext(), throwable1.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -215,7 +215,7 @@ public class ProfileFragment extends BaseFragment {
                 .subscribe(() -> {
                     updateBlockedButton(false);
                     updateInterface();
-                    ToastHelper.show(getContext(), com.womandroid.we.R.string.user_unblocked);
+                    ToastHelper.show(getContext(), R.string.user_unblocked);
                 }, throwable12 -> {
                     ChatSDK.logError(throwable12);
                     Toast.makeText(com.womandroid.we.chatSDK.ui.profile.ProfileFragment.this.getContext(), throwable12.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -237,7 +237,7 @@ public class ProfileFragment extends BaseFragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> {
                     updateFriendsButton(true);
-                    ToastHelper.show(getContext(), getString(com.womandroid.we.R.string.contact_added));
+                    ToastHelper.show(getContext(), getString(R.string.contact_added));
                 }, throwable -> {
                     ChatSDK.logError(throwable);
                     Toast.makeText(com.womandroid.we.chatSDK.ui.profile.ProfileFragment.this.getContext(), throwable.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -251,7 +251,7 @@ public class ProfileFragment extends BaseFragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> {
                     updateFriendsButton(false);
-                    ToastHelper.show(getContext(), getString(com.womandroid.we.R.string.contact_deleted));
+                    ToastHelper.show(getContext(), getString(R.string.contact_deleted));
                     getActivity().finish();
                 }, throwable -> {
                     ChatSDK.logError(throwable);
@@ -286,11 +286,11 @@ public class ProfileFragment extends BaseFragment {
         setViewVisibility(blockOrUnblockButton, visible);
         setViewVisibility(addOrDeleteButton, visible);
 
-        setRowVisible(com.womandroid.we.R.id.ivLocation, com.womandroid.we.R.id.tvLocation, !StringChecker.isNullOrEmpty(user.getLocation()));
-        setRowVisible(com.womandroid.we.R.id.ivPhone, com.womandroid.we.R.id.tvPhone, !StringChecker.isNullOrEmpty(user.getPhoneNumber()));
-        setRowVisible(com.womandroid.we.R.id.ivEmail, com.womandroid.we.R.id.tvEmail, !StringChecker.isNullOrEmpty(user.getEmail()));
-        setRowVisible(com.womandroid.we.R.id.ivFollows, com.womandroid.we.R.id.tvFollows, !StringChecker.isNullOrEmpty(user.getPresenceSubscription()));
-        setRowVisible(com.womandroid.we.R.id.ivFollowed, com.womandroid.we.R.id.tvFollowed, !StringChecker.isNullOrEmpty(user.getPresenceSubscription()));
+        setRowVisible(R.id.ivLocation, R.id.tvLocation, !StringChecker.isNullOrEmpty(user.getLocation()));
+        setRowVisible(R.id.ivPhone, R.id.tvPhone, !StringChecker.isNullOrEmpty(user.getPhoneNumber()));
+        setRowVisible(R.id.ivEmail, R.id.tvEmail, !StringChecker.isNullOrEmpty(user.getEmail()));
+        setRowVisible(R.id.ivFollows, R.id.tvFollows, !StringChecker.isNullOrEmpty(user.getPresenceSubscription()));
+        setRowVisible(R.id.ivFollowed, R.id.tvFollowed, !StringChecker.isNullOrEmpty(user.getPresenceSubscription()));
 
         if (!isCurrentUser) {
             // Find out if the user is blocked already?
@@ -378,29 +378,29 @@ public class ProfileFragment extends BaseFragment {
 //        }
 
 
-        ConstraintLayout layout = mainView.findViewById(com.womandroid.we.R.id.mainConstraintLayout);
+        ConstraintLayout layout = mainView.findViewById(R.id.mainConstraintLayout);
         ConstraintSet set = new ConstraintSet();
         set.clone(layout);
 
         ArrayList<Integer> imageViewIds = new ArrayList<>();
-        imageViewIds.add(com.womandroid.we.R.id.ivLocation);
-        imageViewIds.add(com.womandroid.we.R.id.ivPhone);
-        imageViewIds.add(com.womandroid.we.R.id.ivEmail);
-        imageViewIds.add(com.womandroid.we.R.id.ivFollows);
-        imageViewIds.add(com.womandroid.we.R.id.ivFollowed);
+        imageViewIds.add(R.id.ivLocation);
+        imageViewIds.add(R.id.ivPhone);
+        imageViewIds.add(R.id.ivEmail);
+        imageViewIds.add(R.id.ivFollows);
+        imageViewIds.add(R.id.ivFollowed);
 
-        stackViews(imageViewIds, com.womandroid.we.R.id.tvStatus, set);
+        stackViews(imageViewIds, R.id.tvStatus, set);
 
         ArrayList<Integer> textViewIds = new ArrayList<>();
-        textViewIds.add(com.womandroid.we.R.id.tvLocation);
-        textViewIds.add(com.womandroid.we.R.id.tvPhone);
-        textViewIds.add(com.womandroid.we.R.id.tvEmail);
-        textViewIds.add(com.womandroid.we.R.id.tvFollows);
-        textViewIds.add(com.womandroid.we.R.id.tvFollowed);
-        textViewIds.add(com.womandroid.we.R.id.btnAddOrDelete);
-        textViewIds.add(com.womandroid.we.R.id.btnBlockOrUnblock);
+        textViewIds.add(R.id.tvLocation);
+        textViewIds.add(R.id.tvPhone);
+        textViewIds.add(R.id.tvEmail);
+        textViewIds.add(R.id.tvFollows);
+        textViewIds.add(R.id.tvFollowed);
+        textViewIds.add(R.id.btnAddOrDelete);
+        textViewIds.add(R.id.btnBlockOrUnblock);
 
-        stackViews(textViewIds, com.womandroid.we.R.id.tvStatus, set);
+        stackViews(textViewIds, R.id.tvStatus, set);
 
         set.applyTo(layout);
     }
@@ -437,7 +437,7 @@ public class ProfileFragment extends BaseFragment {
                 + countryCode.toLowerCase(Locale.ENGLISH);
 
         try {
-            Class<R.drawable> res = com.womandroid.we.R.drawable.class;
+            Class<R.drawable> res = R.drawable.class;
             Field field = res.getField(drawableName);
             return field.getInt(null);
         } catch (Exception e) {
@@ -460,7 +460,7 @@ public class ProfileFragment extends BaseFragment {
         MenuItem item =
                 menu.add(Menu.NONE, R.id.action_chat_sdk_settings, 12, "Settings");
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        item.setIcon(com.womandroid.we.R.drawable.icn_24_settings);
+        item.setIcon(R.drawable.icn_24_settings);
     }
 
     @Override
@@ -469,7 +469,7 @@ public class ProfileFragment extends BaseFragment {
         /* Cant use switch in the library*/
         int id = item.getItemId();
 
-        if (id == com.womandroid.we.R.id.action_chat_sdk_settings)
+        if (id == R.id.action_chat_sdk_settings)
         {
             showSettings();
             return true;

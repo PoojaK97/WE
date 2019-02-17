@@ -19,6 +19,8 @@ import java.util.Date;
 import java.util.Locale;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.base.AbstractMessageViewHolder;
 import com.womandroid.we.chatSDK.core.dao.Message;
 import com.womandroid.we.chatSDK.core.interfaces.ThreadType;
@@ -45,15 +47,15 @@ public class BaseMessageViewHolder extends AbstractMessageViewHolder {
     public BaseMessageViewHolder(View itemView, Activity activity) {
         super(itemView, activity);
 
-        timeTextView = itemView.findViewById(com.womandroid.we.R.id.txt_time);
-        avatarImageView = itemView.findViewById(com.womandroid.we.R.id.avatar);
-        messageBubble = itemView.findViewById(com.womandroid.we.R.id.message_bubble);
-        messageTextView = itemView.findViewById(com.womandroid.we.R.id.txt_content);
-        messageIconView = itemView.findViewById(com.womandroid.we.R.id.icon);
-        messageImageView = itemView.findViewById(com.womandroid.we.R.id.image);
-        extraLayout = itemView.findViewById(com.womandroid.we.R.id.extra_layout);
-        readReceiptImageView = itemView.findViewById(com.womandroid.we.R.id.read_receipt);
-        progressBar = itemView.findViewById(com.womandroid.we.R.id.progress_bar);
+        timeTextView = itemView.findViewById(R.id.txt_time);
+        avatarImageView = itemView.findViewById(R.id.avatar);
+        messageBubble = itemView.findViewById(R.id.message_bubble);
+        messageTextView = itemView.findViewById(R.id.txt_content);
+        messageIconView = itemView.findViewById(R.id.icon);
+        messageImageView = itemView.findViewById(R.id.image);
+        extraLayout = itemView.findViewById(R.id.extra_layout);
+        readReceiptImageView = itemView.findViewById(R.id.read_receipt);
+        progressBar = itemView.findViewById(R.id.progress_bar);
 
         itemView.setOnClickListener(v -> {
             onClick(v);
@@ -86,10 +88,10 @@ public class BaseMessageViewHolder extends AbstractMessageViewHolder {
             Context context = v.getContext();
 
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle(itemView.getContext().getString(com.womandroid.we.R.string.delete_message));
+            builder.setTitle(itemView.getContext().getString(R.string.delete_message));
 
             // Set up the buttons
-            builder.setPositiveButton(context.getString(com.womandroid.we.R.string.delete), (dialog, which) -> {
+            builder.setPositiveButton(context.getString(R.string.delete), (dialog, which) -> {
                 try {
                     ChatSDK.thread().deleteMessage(message).subscribe( new CrashReportingCompletableObserver());
                 }
@@ -97,7 +99,7 @@ public class BaseMessageViewHolder extends AbstractMessageViewHolder {
                     ChatSDK.logError(e);
                 }
             });
-            builder.setNegativeButton(com.womandroid.we.R.string.cancel, (dialog, which) -> dialog.cancel());
+            builder.setNegativeButton(R.string.cancel, (dialog, which) -> dialog.cancel());
 
             builder.show();
 
@@ -137,7 +139,7 @@ public class BaseMessageViewHolder extends AbstractMessageViewHolder {
 
     protected void updateReadStatus () {
         if (message != null) {
-            int resource = com.womandroid.we.R.drawable.ic_message_received;
+            int resource = R.drawable.ic_message_received;
             ReadStatus status = message.getReadStatus();
 
             // Hide the read receipt for public threads
@@ -146,10 +148,10 @@ public class BaseMessageViewHolder extends AbstractMessageViewHolder {
             }
 
             if(status.is(ReadStatus.delivered())) {
-                resource = com.womandroid.we.R.drawable.ic_message_delivered;
+                resource = R.drawable.ic_message_delivered;
             }
             if(status.is(ReadStatus.read())) {
-                resource = com.womandroid.we.R.drawable.ic_message_read;
+                resource = R.drawable.ic_message_read;
             }
             if(readReceiptImageView != null) {
                 readReceiptImageView.setImageResource(resource);
@@ -170,11 +172,11 @@ public class BaseMessageViewHolder extends AbstractMessageViewHolder {
     }
 
     public int maxWidth () {
-        return activity.getResources().getDimensionPixelSize(com.womandroid.we.R.dimen.chat_sdk_max_image_message_width);
+        return activity.getResources().getDimensionPixelSize(R.dimen.chat_sdk_max_image_message_width);
     }
 
     public int maxHeight () {
-        return activity.getResources().getDimensionPixelSize(com.womandroid.we.R.dimen.chat_sdk_max_image_message_height);
+        return activity.getResources().getDimensionPixelSize(R.dimen.chat_sdk_max_image_message_height);
     }
 
     public void showProgressBar () {
@@ -237,7 +239,7 @@ public class BaseMessageViewHolder extends AbstractMessageViewHolder {
             setIconSize(0, 0);
             setIconMargins(0,0,0,0);
         } else {
-            setIconSize(activity.getResources().getDimensionPixelSize(com.womandroid.we.R.dimen.chat_sdk_max_icon_message_width), activity.getResources().getDimensionPixelSize(com.womandroid.we.R.dimen.chat_sdk_max_icon_message_height));
+            setIconSize(activity.getResources().getDimensionPixelSize(R.dimen.chat_sdk_max_icon_message_width), activity.getResources().getDimensionPixelSize(R.dimen.chat_sdk_max_icon_message_height));
             setIconMargins(5,0,5,0);
         }
         messageBubble.requestLayout();

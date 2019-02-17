@@ -10,6 +10,7 @@ package com.womandroid.we.chatSDK.ui.main;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -22,6 +23,12 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.womandroid.we.LocaleManager;
+import com.womandroid.we.R;
+import com.womandroid.we.chatSDK.core.session.ChatSDK;
+import com.womandroid.we.chatSDK.core.utils.PermissionRequestHandler;
+import com.womandroid.we.chatSDK.ui.utils.ToastHelper;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -30,9 +37,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.womandroid.we.chatSDK.core.session.ChatSDK;
-import com.womandroid.we.chatSDK.core.utils.PermissionRequestHandler;
-import com.womandroid.we.chatSDK.ui.utils.ToastHelper;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -56,22 +60,22 @@ public class BaseActivity extends AppCompatActivity {
     /**
      * @return the bitmap that will be used for the screen overview also called the recents apps.
      **/
-    protected Bitmap getTaskDescriptionBitmap(){
-        return BitmapFactory.decodeResource(getResources(), com.womandroid.we.R.drawable.ic_launcher);
+    protected Bitmap getTaskDescriptionBitmap() {
+        return BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
     }
 
-    protected int getTaskDescriptionColor(){
+    protected int getTaskDescriptionColor() {
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = getTheme();
-        theme.resolveAttribute(com.womandroid.we.R.attr.colorPrimary, typedValue, true);
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
         return typedValue.data;
     }
 
-    protected String getTaskDescriptionLabel(){
+    protected String getTaskDescriptionLabel() {
         return (String) getTitle();
     }
-    
-    protected void setTaskDescription(Bitmap bm, String label, int color){
+
+    protected void setTaskDescription(Bitmap bm, String label, int color) {
         // Color the app topbar label and icon in the overview screen
         //http://www.bignerdranch.com/blog/polishing-your-Android-overview-screen-entry/
         // Placed in the post create so it would be called after the action bar is initialized and we have a title.
@@ -81,12 +85,11 @@ public class BaseActivity extends AppCompatActivity {
             setTaskDescription(td);
         }
     }
-    
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
     }
-
 
 
     @Override
@@ -123,7 +126,7 @@ public class BaseActivity extends AppCompatActivity {
     /**
      * Set up the ui so every view and nested view that is not EditText will listen to touch event and dismiss the keyboard if touched.
      * http://stackoverflow.com/questions/4165414/how-to-hide-soft-keyboard-on-android-after-clicking-outside-edittext
-     * */
+     */
     public void setupTouchUIToDismissKeyboard(View view) {
         setupTouchUIToDismissKeyboard(view, (v, event) -> {
             hideSoftKeyboard(com.womandroid.we.chatSDK.ui.main.BaseActivity.this);
@@ -137,10 +140,9 @@ public class BaseActivity extends AppCompatActivity {
             ids = Arrays.asList(exceptIDs);
 
         //Set up touch listener for non-text box views to hide keyboard.
-        if(!(view instanceof EditText)) {
+        if (!(view instanceof EditText)) {
 
-            if (!ids.isEmpty() && ids.contains(view.getId()))
-            {
+            if (!ids.isEmpty() && ids.contains(view.getId())) {
                 return;
             }
 
@@ -159,9 +161,11 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    /** Hide the Soft Keyboard.*/
+    /**
+     * Hide the Soft Keyboard.
+     */
     public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE);
 
         if (inputMethodManager == null)
             return;
@@ -170,8 +174,10 @@ public class BaseActivity extends AppCompatActivity {
             inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 
-    /** Show a SuperToast with the given text. */
-    protected void showToast(String text){
+    /**
+     * Show a SuperToast with the given text.
+     */
+    protected void showToast(String text) {
         if (StringUtils.isEmpty(text))
             return;
 
@@ -219,4 +225,8 @@ public class BaseActivity extends AppCompatActivity {
         PermissionRequestHandler.shared().onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleManager.setLocale(base));
+    }
 }

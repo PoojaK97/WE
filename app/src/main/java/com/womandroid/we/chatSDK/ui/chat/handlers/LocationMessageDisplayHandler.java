@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.base.AbstractMessageViewHolder;
 import com.womandroid.we.chatSDK.core.dao.Message;
 import com.womandroid.we.chatSDK.core.session.ChatSDK;
@@ -18,7 +19,7 @@ public class LocationMessageDisplayHandler extends AbstractMessageDisplayHandler
 
     @Override
     public String displayName(Message message) {
-        return ChatSDK.shared().context().getString(com.womandroid.we.R.string.location_message);
+        return ChatSDK.shared().context().getString(R.string.location_message);
     }
 
     @Override

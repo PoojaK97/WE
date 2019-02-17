@@ -26,6 +26,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.dao.User;
 import com.womandroid.we.chatSDK.core.dao.Thread;
 import com.womandroid.we.chatSDK.core.events.EventType;
@@ -113,7 +115,7 @@ public class SelectContactActivity extends BaseActivity {
         ActionBar ab = getSupportActionBar();
         if (ab!=null)
         {
-            ab.setTitle(getString(com.womandroid.we.R.string.pick_friends));
+            ab.setTitle(getString(R.string.pick_friends));
             ab.setHomeButtonEnabled(true);
         }
     }
@@ -137,17 +139,17 @@ public class SelectContactActivity extends BaseActivity {
     }
 
     protected @LayoutRes int activityLayout() {
-        return com.womandroid.we.R.layout.chat_sdk_activity_pick_friends;
+        return R.layout.chat_sdk_activity_pick_friends;
     }
 
     protected void initViews() {
-        recyclerView = findViewById(com.womandroid.we.R.id.chat_sdk_list_contacts);
-        txtSearch = findViewById(com.womandroid.we.R.id.chat_sdk_et_search);
-        imgSearch = findViewById(com.womandroid.we.R.id.chat_sdk_search_image);
-        btnStartChat = findViewById(com.womandroid.we.R.id.chat_sdk_btn_add_contacts);
+        recyclerView = findViewById(R.id.chat_sdk_list_contacts);
+        txtSearch = findViewById(R.id.chat_sdk_et_search);
+        imgSearch = findViewById(R.id.chat_sdk_search_image);
+        btnStartChat = findViewById(R.id.chat_sdk_btn_add_contacts);
 
         if (mode == MODE_ADD_TO_CONVERSATION) {
-            btnStartChat.setText(getResources().getString(com.womandroid.we.R.string.add_users));
+            btnStartChat.setText(getResources().getString(R.string.add_users));
         }
 
     }
@@ -186,7 +188,7 @@ public class SelectContactActivity extends BaseActivity {
                     if (thread != null) {
                         ChatSDK.ui().startChatActivityForID(getApplicationContext(), thread.getEntityID());
                     }
-                }).doOnError(throwable -> ToastHelper.show(getApplicationContext(), com.womandroid.we.R.string.create_thread_with_users_fail_toast));
+                }).doOnError(throwable -> ToastHelper.show(getApplicationContext(), R.string.create_thread_with_users_fail_toast));
     }
 
     protected void loadData () {
@@ -222,15 +224,15 @@ public class SelectContactActivity extends BaseActivity {
         btnStartChat.setOnClickListener(v -> {
 
             if (adapter.getSelectedCount() == 0) {
-                showToast(getString(com.womandroid.we.R.string.pick_friends_activity_no_users_selected_toast));
+                showToast(getString(R.string.pick_friends_activity_no_users_selected_toast));
                 return;
             }
 
             if (mode == MODE_ADD_TO_CONVERSATION) {
-                showProgressDialog( getString(com.womandroid.we.R.string.pick_friends_activity_prog_dialog_add_to_convo_message));
+                showProgressDialog( getString(R.string.pick_friends_activity_prog_dialog_add_to_convo_message));
             }
             else if (mode == MODE_NEW_CONVERSATION) {
-                showProgressDialog(getString(com.womandroid.we.R.string.pick_friends_activity_prog_dialog_open_new_convo_message));
+                showProgressDialog(getString(R.string.pick_friends_activity_prog_dialog_open_new_convo_message));
             }
 
             final ArrayList<User> users = new ArrayList<>();
@@ -242,7 +244,7 @@ public class SelectContactActivity extends BaseActivity {
                 // If there are more than 2 users then show a dialog to enter the name
                 if(users.size() > 2) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(com.womandroid.we.chatSDK.ui.contacts.SelectContactActivity.this);
-                    builder.setTitle(getString(com.womandroid.we.R.string.pick_friends_activity_prog_group_name_dialog));
+                    builder.setTitle(getString(R.string.pick_friends_activity_prog_group_name_dialog));
 
                     // Set up the input
                     final EditText input = new EditText(com.womandroid.we.chatSDK.ui.contacts.SelectContactActivity.this);
@@ -250,13 +252,13 @@ public class SelectContactActivity extends BaseActivity {
                     builder.setView(input);
 
                     // Set up the buttons
-                    builder.setPositiveButton(getString(com.womandroid.we.R.string.create), (dialog, which) -> com.womandroid.we.chatSDK.ui.contacts.SelectContactActivity.this.createAndOpenThread(input.getText().toString(), users)
+                    builder.setPositiveButton(getString(R.string.create), (dialog, which) -> com.womandroid.we.chatSDK.ui.contacts.SelectContactActivity.this.createAndOpenThread(input.getText().toString(), users)
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe((thread, throwable) -> {
                                 dismissProgressDialog();
                                 finish();
                             }));
-                    builder.setNegativeButton(com.womandroid.we.R.string.cancel, (dialog, which) -> {
+                    builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
                         dialog.cancel();
                         dismissProgressDialog();
                     });
@@ -282,7 +284,7 @@ public class SelectContactActivity extends BaseActivity {
                             dismissProgressDialog();
                             finish();
                             if (animateExit) {
-                                overridePendingTransition(com.womandroid.we.R.anim.dummy, com.womandroid.we.R.anim.slide_top_bottom_out);
+                                overridePendingTransition(R.anim.dummy, R.anim.slide_top_bottom_out);
                             }
                         }, throwable -> {
                             ChatSDK.logError(throwable);
@@ -304,7 +306,7 @@ public class SelectContactActivity extends BaseActivity {
     public void onBackPressed() {
         super.onBackPressed();
         if (animateExit) {
-            overridePendingTransition(com.womandroid.we.R.anim.dummy, com.womandroid.we.R.anim.slide_top_bottom_out);
+            overridePendingTransition(R.anim.dummy, R.anim.slide_top_bottom_out);
         }
     }
 

@@ -9,6 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Locale;
 
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.ui.utils.ToastHelper;
 
 /**
@@ -23,7 +24,7 @@ public class LocationMessageOnClickHandler {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
             activity.startActivity(intent);
         } catch (ActivityNotFoundException e) {
-            ToastHelper.show(activity, com.womandroid.we.R.string.message_adapter_no_google_maps);
+            ToastHelper.show(activity, R.string.message_adapter_no_google_maps);
         }
     }
 

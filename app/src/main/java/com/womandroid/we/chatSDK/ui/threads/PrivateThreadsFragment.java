@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import java.util.List;
 
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.events.NetworkEvent;
 import com.womandroid.we.chatSDK.core.interfaces.ThreadType;
 import com.womandroid.we.chatSDK.core.session.ChatSDK;
@@ -32,8 +33,8 @@ public class PrivateThreadsFragment extends ThreadsFragment {
     public void initViews() {
         super.initViews();
 
-        Disposable d = adapter.onLongClickObservable().subscribe(thread -> DialogUtils.showToastDialog(getContext(), "", getResources().getString(com.womandroid.we.R.string.alert_delete_thread), getResources().getString(com.womandroid.we.R.string.delete),
-                getResources().getString(com.womandroid.we.R.string.cancel), null, () -> {
+        Disposable d = adapter.onLongClickObservable().subscribe(thread -> DialogUtils.showToastDialog(getContext(), "", getResources().getString(R.string.alert_delete_thread), getResources().getString(R.string.delete),
+                getResources().getString(R.string.cancel), null, () -> {
                     ChatSDK.thread().deleteThread(thread)
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(new CompletableObserver() {
@@ -45,12 +46,12 @@ public class PrivateThreadsFragment extends ThreadsFragment {
                                 public void onComplete() {
                                     adapter.clearData();
                                     reloadData();
-                                    ToastHelper.show(getContext(), getString(com.womandroid.we.R.string.delete_thread_success_toast));
+                                    ToastHelper.show(getContext(), getString(R.string.delete_thread_success_toast));
                                 }
 
                                 @Override
                                 public void onError(Throwable e) {
-                                    ToastHelper.show(getContext(), getString(com.womandroid.we.R.string.delete_thread_fail_toast));
+                                    ToastHelper.show(getContext(), getString(R.string.delete_thread_fail_toast));
                                 }
                             });
                     return null;
@@ -68,7 +69,7 @@ public class PrivateThreadsFragment extends ThreadsFragment {
         /* Cant use switch in the library*/
         int id = item.getItemId();
 
-        if (id == com.womandroid.we.R.id.action_chat_sdk_add) {
+        if (id == R.id.action_chat_sdk_add) {
             ChatSDK.ui().startSelectContactsActivity(getContext());
             return true;
         }

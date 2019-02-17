@@ -34,6 +34,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.audio.Recording;
 import com.womandroid.we.chatSDK.core.dao.Message;
 import com.womandroid.we.chatSDK.core.dao.User;
@@ -154,7 +156,7 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
                 if (throwable == null && date != null) {
                     Locale current = getResources().getConfiguration().locale;
                     PrettyTime pt = new PrettyTime(current);
-                    setSubtitleText(String.format(getString(com.womandroid.we.R.string.last_seen__), pt.format(date)));
+                    setSubtitleText(String.format(getString(R.string.last_seen__), pt.format(date)));
                 }
             });
         }
@@ -196,7 +198,7 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
              * http://stackoverflow.com/questions/16026818/actionbar-custom-view-with-centered-imageview-action-items-on-sides
              */
 
-            actionBarView = getLayoutInflater().inflate(com.womandroid.we.R.layout.chat_sdk_actionbar_chat_activity, null);
+            actionBarView = getLayoutInflater().inflate(R.layout.chat_sdk_actionbar_chat_activity, null);
 
             actionBarView.setOnClickListener(v -> {
                 if (ChatSDK.config().threadDetailsEnabled) {
@@ -204,15 +206,15 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
                 }
             });
 
-            TextView textView = actionBarView.findViewById(com.womandroid.we.R.id.tvName);
+            TextView textView = actionBarView.findViewById(R.id.tvName);
 
             String displayName = Strings.nameForThread(thread);
             setTitle(displayName);
             textView.setText(displayName);
 
-            subtitleTextView = actionBarView.findViewById(com.womandroid.we.R.id.tvSubtitle);
+            subtitleTextView = actionBarView.findViewById(R.id.tvSubtitle);
 
-            final SimpleDraweeView circleImageView = actionBarView.findViewById(com.womandroid.we.R.id.ivAvatar);
+            final SimpleDraweeView circleImageView = actionBarView.findViewById(R.id.ivAvatar);
             ThreadImageBuilder.load(circleImageView, thread);
 
             ab.setCustomView(actionBarView);
@@ -220,18 +222,18 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
     }
 
     protected @LayoutRes int activityLayout() {
-        return com.womandroid.we.R.layout.chat_sdk_activity_chat;
+        return R.layout.chat_sdk_activity_chat;
     }
 
     protected void initViews () {
         // Set up the message box - this is the box that sits above the keyboard
-        textInputView = findViewById(com.womandroid.we.R.id.chat_sdk_message_box);
+        textInputView = findViewById(R.id.chat_sdk_message_box);
         textInputView.setDelegate(this);
         textInputView.setAudioModeEnabled(ChatSDK.audioMessage() != null);
 
-        progressBar = findViewById(com.womandroid.we.R.id.chat_sdk_progressbar);
+        progressBar = findViewById(R.id.chat_sdk_progressbar);
 
-        final SwipeRefreshLayout mSwipeRefresh = findViewById(com.womandroid.we.R.id.ptr_layout);
+        final SwipeRefreshLayout mSwipeRefresh = findViewById(R.id.ptr_layout);
 
         mSwipeRefresh.setOnRefreshListener(() -> {
 
@@ -246,7 +248,7 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
                     .subscribe((messages, throwable) -> {
                         if (throwable == null) {
                             if (messages.size() < 2) {
-                                showToast(getString(com.womandroid.we.R.string.chat_activity_no_more_messages_to_load_toast));
+                                showToast(getString(R.string.chat_activity_no_more_messages_to_load_toast));
                             }
                             else {
                                 for(Message m : messages) {
@@ -260,7 +262,7 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
                     }));
         });
 
-        recyclerView = findViewById(com.womandroid.we.R.id.list_chat);
+        recyclerView = findViewById(R.id.list_chat);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
@@ -415,7 +417,7 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
                     if(networkEvent.thread.equals(thread)) {
                         String typingText = networkEvent.text;
                         if(typingText != null) {
-                            typingText += getString(com.womandroid.we.R.string.typing);
+                            typingText += getString(R.string.typing);
                         }
                         Timber.v(typingText);
                         setSubtitleText(typingText);
@@ -426,7 +428,7 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
     protected void setSubtitleText(String text) {
         if(StringChecker.isNullOrEmpty(text)) {
             if(thread.typeIs(ThreadType.Private1to1)) {
-                text = getString(com.womandroid.we.R.string.tap_here_for_contact_info);
+                text = getString(R.string.tap_here_for_contact_info);
             }
             else {
                 text = "";
@@ -466,7 +468,7 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
 
         // Set up the UI to dismiss keyboard on touch event, Option and Send buttons are not included.
         // If list is scrolling we ignoring the touch event.
-        setupTouchUIToDismissKeyboard(findViewById(com.womandroid.we.R.id.chat_sdk_root_view), (v, event) -> {
+        setupTouchUIToDismissKeyboard(findViewById(R.id.chat_sdk_root_view), (v, event) -> {
 
             // Using small delay for better accuracy in catching the scrolls.
             v.postDelayed(() -> {
@@ -477,7 +479,7 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
             }, 300);
 
             return false;
-        }, com.womandroid.we.R.id.chat_sdk_btn_chat_send_message, com.womandroid.we.R.id.chat_sdk_btn_options);
+        }, R.id.chat_sdk_btn_chat_send_message, R.id.chat_sdk_btn_options);
 
         markRead();
 
@@ -579,9 +581,9 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
 
         // Adding the add user option only if group chat is enabled.
         if (ChatSDK.config().groupsEnabled && thread.typeIs(ThreadType.Private)) {
-            MenuItem item = menu.add(Menu.NONE, com.womandroid.we.R.id.action_chat_sdk_add, 10, getString(com.womandroid.we.R.string.chat_activity_show_users_item_text));
+            MenuItem item = menu.add(Menu.NONE, R.id.action_chat_sdk_add, 10, getString(R.string.chat_activity_show_users_item_text));
             item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-            item.setIcon(com.womandroid.we.R.drawable.ic_plus);
+            item.setIcon(R.drawable.ic_plus);
         }
 
         return super.onCreateOptionsMenu(menu);
@@ -596,10 +598,10 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
         if (!inflateMenuItems)
             return super.onOptionsItemSelected(item);
 
-        if (id == com.womandroid.we.R.id.action_chat_sdk_add) {
+        if (id == R.id.action_chat_sdk_add) {
             startAddUsersActivity();
         }
-        else if (id == com.womandroid.we.R.id.action_chat_sdk_show) {
+        else if (id == R.id.action_chat_sdk_show) {
             showUsersDialog();
         }
 
@@ -628,15 +630,15 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
 
         startActivityForResult(intent, ADD_USERS);
 
-        overridePendingTransition(com.womandroid.we.R.anim.slide_bottom_top, com.womandroid.we.R.anim.dummy);
+        overridePendingTransition(R.anim.slide_bottom_top, R.anim.dummy);
     }
 
     /**
      * Show a dialog containing all the users in this chat.
      */
     protected void showUsersDialog() {
-        ContactsFragment contactsFragment = ContactsFragment.newThreadUsersDialogInstance(thread.getEntityID(), getString(com.womandroid.we.R.string.thread_users));
-        contactsFragment.show(getSupportFragmentManager(), getString(com.womandroid.we.R.string.contacts));
+        ContactsFragment contactsFragment = ContactsFragment.newThreadUsersDialogInstance(thread.getEntityID(), getString(R.string.thread_users));
+        contactsFragment.show(getSupportFragmentManager(), getString(R.string.contacts));
     }
 
     /**
@@ -651,7 +653,7 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
 
         startActivityForResult(intent, SHOW_DETAILS);
 
-        overridePendingTransition(com.womandroid.we.R.anim.slide_bottom_top, com.womandroid.we.R.anim.dummy);
+        overridePendingTransition(R.anim.slide_bottom_top, R.anim.dummy);
     }
 
     /**

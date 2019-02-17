@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.dao.DaoCore;
 import com.womandroid.we.chatSDK.core.dao.Message;
 import com.womandroid.we.chatSDK.core.dao.Thread;
@@ -51,7 +53,7 @@ public class ThreadsListAdapter extends RecyclerView.Adapter<ThreadViewHolder> {
     @Override
     public ThreadViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(com.womandroid.we.R.layout.chat_sdk_row_thread, null);
+        View row = inflater.inflate(R.layout.chat_sdk_row_thread, null);
         return new ThreadViewHolder(row);
     }
 
@@ -88,7 +90,7 @@ public class ThreadsListAdapter extends RecyclerView.Adapter<ThreadViewHolder> {
         }
 
         if (typing.get(thread) != null) {
-            holder.lastMessageTextView.setText(String.format(context.get().getString(com.womandroid.we.R.string.__typing), typing.get(thread)));
+            holder.lastMessageTextView.setText(String.format(context.get().getString(R.string.__typing), typing.get(thread)));
         }
 
         int unreadMessageCount = thread.getUnreadMessagesCount();
@@ -116,7 +118,7 @@ public class ThreadsListAdapter extends RecyclerView.Adapter<ThreadViewHolder> {
     }
 
     public String getLastMessageText (Message lastMessage) {
-        String messageText = Strings.t(com.womandroid.we.R.string.no_messages);
+        String messageText = Strings.t(R.string.no_messages);
         if (lastMessage != null) {
 
             messageText = Strings.payloadAsString(lastMessage);

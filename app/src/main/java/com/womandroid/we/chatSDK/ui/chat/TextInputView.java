@@ -30,6 +30,8 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import androidx.appcompat.widget.AppCompatImageButton;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.audio.Recording;
 import com.womandroid.we.chatSDK.core.session.ChatSDK;
 import com.womandroid.we.chatSDK.core.utils.PermissionRequestHandler;
@@ -76,13 +78,13 @@ public class TextInputView extends LinearLayout implements View.OnKeyListener, T
     }
 
     protected void init(){
-        inflate(getContext(), com.womandroid.we.R.layout.chat_sdk_view_message_box, this);
+        inflate(getContext(), R.layout.chat_sdk_view_message_box, this);
     }
 
     protected void initViews(){
-        btnSend = findViewById(com.womandroid.we.R.id.chat_sdk_btn_chat_send_message);
-        btnOptions = findViewById(com.womandroid.we.R.id.chat_sdk_btn_options);
-        etMessage = findViewById(com.womandroid.we.R.id.chat_sdk_et_message_to_send);
+        btnSend = findViewById(R.id.chat_sdk_btn_chat_send_message);
+        btnOptions = findViewById(R.id.chat_sdk_btn_options);
+        etMessage = findViewById(R.id.chat_sdk_et_message_to_send);
     }
 
     protected Activity getActivity() {
@@ -175,7 +177,7 @@ public class TextInputView extends LinearLayout implements View.OnKeyListener, T
         audioMaxLengthReached = false;
 
         recording = new Recording();
-        recording.start().subscribe(() -> toast = new InfiniteToast(getContext(), com.womandroid.we.R.string.recording, false));
+        recording.start().subscribe(() -> toast = new InfiniteToast(getContext(), R.string.recording, false));
 
         rect = new Rect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
         recordingStart = new Date();
@@ -183,7 +185,7 @@ public class TextInputView extends LinearLayout implements View.OnKeyListener, T
         toastUpdateDisposable = Observable.interval(0, 1000, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(aLong -> {
             long remainingTime = ChatSDK.config().audioMessageMaxLengthSeconds - (new Date().getSeconds() - recordingStart.getSeconds());
             if (remainingTime <= 10) {
-                toast.setText(String.format(getContext().getString(com.womandroid.we.R.string.seconds_remaining__), remainingTime));
+                toast.setText(String.format(getContext().getString(R.string.seconds_remaining__), remainingTime));
             }
             if (remainingTime <= 0) {
                 audioMaxLengthReached = true;
@@ -198,16 +200,16 @@ public class TextInputView extends LinearLayout implements View.OnKeyListener, T
         toast.hide();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
-        builder.setTitle(getContext().getString(com.womandroid.we.R.string.audio_length_limit_reached));
+        builder.setTitle(getContext().getString(R.string.audio_length_limit_reached));
 
         // Set up the buttons
-        builder.setPositiveButton(getContext().getString(com.womandroid.we.R.string.send), (dialog, which) -> {
+        builder.setPositiveButton(getContext().getString(R.string.send), (dialog, which) -> {
             delegate.get().sendAudio(recording);
             recording = null;
             dialog.cancel();
             audioMaxLengthReached = false;
         });
-        builder.setNegativeButton(com.womandroid.we.R.string.cancel, (dialog, which) -> {
+        builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
             dialog.cancel();
             audioMaxLengthReached = false;
         });
@@ -227,14 +229,14 @@ public class TextInputView extends LinearLayout implements View.OnKeyListener, T
             if(delegate != null && recording.getDurationMillis() > 1000) {
                 if(!rect.contains(view.getLeft() + (int) motionEvent.getX(), view.getTop() + (int) motionEvent.getY())){
                     // User moved outside bounds
-                    ToastHelper.show(getContext(), getContext().getString(com.womandroid.we.R.string.recording_cancelled));
+                    ToastHelper.show(getContext(), getContext().getString(R.string.recording_cancelled));
                 }
                 else {
                     delegate.get().sendAudio(recording);
                 }
             }
             else {
-                ToastHelper.show(getContext(), getContext().getString(com.womandroid.we.R.string.recording_too_short));
+                ToastHelper.show(getContext(), getContext().getString(R.string.recording_too_short));
             }
             recording = null;
         }
@@ -259,11 +261,11 @@ public class TextInputView extends LinearLayout implements View.OnKeyListener, T
 
     public void updateSendButton () {
         if(StringChecker.isNullOrEmpty(getMessageText()) && audioModeEnabled) {
-            btnSend.setImageResource(com.womandroid.we.R.drawable.ic_36_mic);
+            btnSend.setImageResource(R.drawable.ic_36_mic);
             recordOnPress = true;
         }
         else {
-            btnSend.setImageResource(com.womandroid.we.R.drawable.ic_36_send);
+            btnSend.setImageResource(R.drawable.ic_36_send);
             recordOnPress = false;
         }
     }
@@ -299,7 +301,7 @@ public class TextInputView extends LinearLayout implements View.OnKeyListener, T
         }
         if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
             int editTextLineCount = ((EditText) v).getLineCount();
-            if (editTextLineCount >= getResources().getInteger(com.womandroid.we.R.integer.chat_sdk_max_message_lines))
+            if (editTextLineCount >= getResources().getInteger(R.integer.chat_sdk_max_message_lines))
                 return true;
         }
         return false;

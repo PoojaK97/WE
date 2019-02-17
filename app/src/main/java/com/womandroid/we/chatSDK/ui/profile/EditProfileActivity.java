@@ -26,6 +26,8 @@ import java.util.Locale;
 import java.util.Map;
 
 import androidx.annotation.LayoutRes;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.dao.Keys;
 import com.womandroid.we.chatSDK.core.dao.User;
 import com.womandroid.we.chatSDK.core.defines.Availability;
@@ -85,20 +87,20 @@ public class EditProfileActivity extends BaseActivity {
     }
 
     protected @LayoutRes int activityLayout() {
-        return com.womandroid.we.R.layout.chat_sdk_edit_profile;
+        return R.layout.chat_sdk_edit_profile;
     }
 
     protected void initViews() {
-        avatarImageView = findViewById(com.womandroid.we.R.id.ivAvatar);
-        statusEditText = findViewById(com.womandroid.we.R.id.etStatus);
-        availabilitySpinner = findViewById(com.womandroid.we.R.id.spAvailability);
-        nameEditText = findViewById(com.womandroid.we.R.id.etName);
-        locationEditText = findViewById(com.womandroid.we.R.id.etLocation);
-        phoneNumberEditText = findViewById(com.womandroid.we.R.id.etPhone);
-        emailEditText = findViewById(com.womandroid.we.R.id.etEmail);
+        avatarImageView = findViewById(R.id.ivAvatar);
+        statusEditText = findViewById(R.id.etStatus);
+        availabilitySpinner = findViewById(R.id.spAvailability);
+        nameEditText = findViewById(R.id.etName);
+        locationEditText = findViewById(R.id.etLocation);
+        phoneNumberEditText = findViewById(R.id.etPhone);
+        emailEditText = findViewById(R.id.etEmail);
 
-        countryButton = findViewById(com.womandroid.we.R.id.btnCountry);
-        logoutButton = findViewById(com.womandroid.we.R.id.btnLogout);
+        countryButton = findViewById(R.id.btnCountry);
+        logoutButton = findViewById(R.id.btnLogout);
 
         // Set the current user's information
         String status = currentUser.getStatus();
@@ -182,9 +184,9 @@ public class EditProfileActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        MenuItem item = menu.add(Menu.NONE, com.womandroid.we.R.id.action_chat_sdk_save, 12, getString(com.womandroid.we.R.string.action_save));
+        MenuItem item = menu.add(Menu.NONE, R.id.action_chat_sdk_save, 12, getString(R.string.action_save));
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        item.setIcon(com.womandroid.we.R.drawable.icn_24_save);
+        item.setIcon(R.drawable.icn_24_save);
 
         return true;
     }
@@ -195,7 +197,7 @@ public class EditProfileActivity extends BaseActivity {
         /* Cant use switch in the library*/
         int id = item.getItemId();
 
-        if (id == com.womandroid.we.R.id.action_chat_sdk_save) {
+        if (id == R.id.action_chat_sdk_save) {
             saveAndExit();
             return true;
         }
@@ -273,7 +275,7 @@ public class EditProfileActivity extends BaseActivity {
 
 
         if (changed) {
-            showOrUpdateProgressDialog(getString(com.womandroid.we.R.string.alert_save_contact));
+            showOrUpdateProgressDialog(getString(R.string.alert_save_contact));
             disposableList.add(ChatSDK.core().pushUser()
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(() -> {

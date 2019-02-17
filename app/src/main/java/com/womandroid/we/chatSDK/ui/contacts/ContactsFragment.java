@@ -24,6 +24,8 @@ import java.util.List;
 import androidx.annotation.LayoutRes;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.dao.DaoCore;
 import com.womandroid.we.chatSDK.core.dao.User;
 import com.womandroid.we.chatSDK.core.dao.Thread;
@@ -227,13 +229,13 @@ public class ContactsFragment extends BaseFragment {
     }
 
     protected @LayoutRes int activityLayout() {
-        return com.womandroid.we.R.layout.chat_sdk_fragment_contacts;
+        return R.layout.chat_sdk_fragment_contacts;
     }
 
     public void initViews() {
-        recyclerView = mainView.findViewById(com.womandroid.we.R.id.chat_sdk_list_contacts);
+        recyclerView = mainView.findViewById(R.id.chat_sdk_list_contacts);
 
-        progressBar = mainView.findViewById(com.womandroid.we.R.id.chat_sdk_progressbar);
+        progressBar = mainView.findViewById(R.id.chat_sdk_progressbar);
 
         // Create the adapter only if null this is here so we wont
         // override the adapter given from the extended class with setAdapter.
@@ -253,9 +255,9 @@ public class ContactsFragment extends BaseFragment {
             return;
 
         MenuItem item =
-                menu.add(Menu.NONE, com.womandroid.we.R.id.action_chat_sdk_add, 10, "Add Chat");
+                menu.add(Menu.NONE, R.id.action_chat_sdk_add, 10, "Add Chat");
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        item.setIcon(com.womandroid.we.R.drawable.ic_plus);
+        item.setIcon(R.drawable.ic_plus);
     }
 
     @Override
@@ -265,7 +267,7 @@ public class ContactsFragment extends BaseFragment {
         int id = item.getItemId();
 
         // Each user that will be found in the search context will be automatically added as a contact.
-        if (id == com.womandroid.we.R.id.action_chat_sdk_add) {
+        if (id == R.id.action_chat_sdk_add) {
             SearchActivity.startSearchActivity(getActivity());
             return true;
         }
@@ -317,13 +319,13 @@ public class ContactsFragment extends BaseFragment {
                             ChatSDK.thread().addUsersToThread(thread, clickedUser)
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(() -> {
-                                        ToastHelper.show(getContext(), getString(com.womandroid.we.R.string.abstract_contact_fragment_user_added_to_thread_toast_success) + clickedUser.getName());
+                                        ToastHelper.show(getContext(), getString(R.string.abstract_contact_fragment_user_added_to_thread_toast_success) + clickedUser.getName());
                                         if (isDialog) {
                                             getDialog().dismiss();
                                         }
                                     }, throwable -> {
                                         ChatSDK.logError(throwable);
-                                        ToastHelper.show(getContext(), getString(com.womandroid.we.R.string.abstract_contact_fragment_user_added_to_thread_toast_fail));
+                                        ToastHelper.show(getContext(), getString(R.string.abstract_contact_fragment_user_added_to_thread_toast_fail));
                                     });
                         }
                         break;

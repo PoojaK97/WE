@@ -27,6 +27,8 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.HashMap;
 
 import androidx.annotation.LayoutRes;
+
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.session.ChatSDK;
 import com.womandroid.we.chatSDK.core.session.InterfaceManager;
 import com.womandroid.we.chatSDK.core.types.AccountDetails;
@@ -67,7 +69,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         setContentView(activityLayout());
 
-        mainView = findViewById(com.womandroid.we.R.id.chat_sdk_root_view);
+        mainView = findViewById(R.id.chat_sdk_root_view);
         setupTouchUIToDismissKeyboard(mainView);
 
         initViews();
@@ -95,20 +97,20 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     protected @LayoutRes int activityLayout() {
-        return com.womandroid.we.R.layout.chat_sdk_activity_login;
+        return R.layout.chat_sdk_activity_login;
     }
 
     protected void initViews() {
-        btnLogin = findViewById(com.womandroid.we.R.id.chat_sdk_btn_login);
-        btnAnonymous = findViewById(com.womandroid.we.R.id.chat_sdk_btn_anon_login);
-        btnTwitter = findViewById(com.womandroid.we.R.id.chat_sdk_btn_twitter_login);
-        btnReg = findViewById(com.womandroid.we.R.id.chat_sdk_btn_register);
-        usernameEditText = findViewById(com.womandroid.we.R.id.chat_sdk_et_username);
-        passwordEditText = findViewById(com.womandroid.we.R.id.chat_sdk_et_password);
-        btnGoogle = findViewById(com.womandroid.we.R.id.chat_sdk_btn_google_login);
-        btnFacebook = findViewById(com.womandroid.we.R.id.chat_sdk_btn_facebook_login);
-        appIconImage = findViewById(com.womandroid.we.R.id.app_icon);
-        btnResetPassword = findViewById(com.womandroid.we.R.id.chat_sdk_btn_reset_password);
+        btnLogin = findViewById(R.id.chat_sdk_btn_login);
+        btnAnonymous = findViewById(R.id.chat_sdk_btn_anon_login);
+        btnTwitter = findViewById(R.id.chat_sdk_btn_twitter_login);
+        btnReg = findViewById(R.id.chat_sdk_btn_register);
+        usernameEditText = findViewById(R.id.chat_sdk_et_username);
+        passwordEditText = findViewById(R.id.chat_sdk_et_password);
+        btnGoogle = findViewById(R.id.chat_sdk_btn_google_login);
+        btnFacebook = findViewById(R.id.chat_sdk_btn_facebook_login);
+        appIconImage = findViewById(R.id.app_icon);
+        btnResetPassword = findViewById(R.id.chat_sdk_btn_reset_password);
 
         btnResetPassword.setVisibility(ChatSDK.config().resetPasswordEnabled ? View.VISIBLE : View.INVISIBLE);
 
@@ -173,21 +175,21 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         Action doFinally = this::dismissProgressDialog;
 
-        showProgressDialog(getString(com.womandroid.we.R.string.authenticating));
+        showProgressDialog(getString(R.string.authenticating));
 
-        if (i == com.womandroid.we.R.id.chat_sdk_btn_login) {
+        if (i == R.id.chat_sdk_btn_login) {
             passwordLogin();
         }
-        else if (i == com.womandroid.we.R.id.chat_sdk_btn_anon_login) {
+        else if (i == R.id.chat_sdk_btn_anon_login) {
             anonymousLogin();
         }
-        else if (i == com.womandroid.we.R.id.chat_sdk_btn_register) {
+        else if (i == R.id.chat_sdk_btn_register) {
             register();
         }
-        else if (i == com.womandroid.we.R.id.chat_sdk_btn_reset_password) {
+        else if (i == R.id.chat_sdk_btn_reset_password) {
             showForgotPasswordDialog();
         }
-        else if (i == com.womandroid.we.R.id.chat_sdk_btn_twitter_login) {
+        else if (i == R.id.chat_sdk_btn_twitter_login) {
             if(ChatSDK.socialLogin() != null) {
                 ChatSDK.socialLogin().loginWithTwitter(this).doOnError(error)
                         .observeOn(AndroidSchedulers.mainThread())
@@ -195,7 +197,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         .subscribe(completion, error);
             }
         }
-        else if (i == com.womandroid.we.R.id.chat_sdk_btn_facebook_login) {
+        else if (i == R.id.chat_sdk_btn_facebook_login) {
             if(ChatSDK.socialLogin() != null) {
                 ChatSDK.socialLogin().loginWithFacebook(this).doOnError(error)
                         .observeOn(AndroidSchedulers.mainThread())
@@ -203,7 +205,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         .subscribe(completion, error);
             }
         }
-        else if (i == com.womandroid.we.R.id.chat_sdk_btn_google_login) {
+        else if (i == R.id.chat_sdk_btn_google_login) {
             if(ChatSDK.socialLogin() != null) {
                 ChatSDK.socialLogin().loginWithGoogle(this).doOnError(error)
                         .observeOn(AndroidSchedulers.mainThread())
@@ -225,7 +227,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 getIntent().getExtras().get(InterfaceManager.ATTEMPT_CACHED_LOGIN) == null ||
                 (boolean) getIntent().getExtras().get(InterfaceManager.ATTEMPT_CACHED_LOGIN)) {
 
-            showProgressDialog(getString(com.womandroid.we.R.string.authenticating));
+            showProgressDialog(getString(R.string.authenticating));
 
             ChatSDK.auth().authenticateWithCachedToken()
                     .observeOn(AndroidSchedulers.mainThread())
@@ -267,7 +269,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
         authenticating = true;
 
-        showProgressDialog(getString(com.womandroid.we.R.string.connecting));
+        showProgressDialog(getString(R.string.connecting));
 
         ChatSDK.auth().authenticate(details)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -326,10 +328,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             errorMessage = error.getMessage();
         }
         else if (login) {
-            errorMessage = getString(com.womandroid.we.R.string.login_activity_failed_to_login_toast);
+            errorMessage = getString(R.string.login_activity_failed_to_login_toast);
         }
         else {
-            errorMessage = getString(com.womandroid.we.R.string.login_activity_failed_to_register_toast);
+            errorMessage = getString(R.string.login_activity_failed_to_register_toast);
         }
 
         showToast(errorMessage);
@@ -337,12 +339,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     protected boolean checkFields(){
         if (usernameEditText.getText().toString().isEmpty()) {
-            showToast(getString(com.womandroid.we.R.string.login_activity_no_mail_toast));
+            showToast(getString(R.string.login_activity_no_mail_toast));
             return false;
         }
 
         if (passwordEditText.getText().toString().isEmpty()) {
-            showToast( getString(com.womandroid.we.R.string.login_activity_no_password_toast) );
+            showToast( getString(R.string.login_activity_no_password_toast) );
             return false;
         }
 
@@ -351,24 +353,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     protected void showForgotPasswordDialog () {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(com.womandroid.we.R.string.forgot_password));
+        builder.setTitle(getString(R.string.forgot_password));
 
         // Set up the input
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         builder.setView(input);
 
-        builder.setPositiveButton(getString(com.womandroid.we.R.string.submit), (dialog, which) -> {
-            showOrUpdateProgressDialog(getString(com.womandroid.we.R.string.requesting));
+        builder.setPositiveButton(getString(R.string.submit), (dialog, which) -> {
+            showOrUpdateProgressDialog(getString(R.string.requesting));
             requestNewPassword(input.getText().toString()).observeOn(AndroidSchedulers.mainThread()).subscribe(() -> {
                 dismissProgressDialog();
-                showToast(getString(com.womandroid.we.R.string.password_reset_success));
+                showToast(getString(R.string.password_reset_success));
             }, throwable -> {
                 showToast(throwable.getLocalizedMessage());
             });
         });
 
-        builder.setNegativeButton(com.womandroid.we.R.string.cancel, (dialog, which) -> {
+        builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
             dialog.cancel();
             dismissProgressDialog();
         });

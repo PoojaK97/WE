@@ -16,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.utils.ImageBuilder;
 import com.womandroid.we.chatSDK.core.utils.PermissionRequestHandler;
 import com.womandroid.we.chatSDK.ui.main.BaseActivity;
@@ -36,18 +37,18 @@ public class ImageMessageOnClickHandler {
         if (StringUtils.isNotBlank(url)) {
 
             LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View popupView = inflater.inflate(com.womandroid.we.R.layout.chat_sdk_popup_touch_image, null);
+            View popupView = inflater.inflate(R.layout.chat_sdk_popup_touch_image, null);
 
             final PopupWindow imagePopup = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
 
             imagePopup.setContentView(popupView);
             imagePopup.setBackgroundDrawable(new BitmapDrawable());
             imagePopup.setOutsideTouchable(true);
-            imagePopup.setAnimationStyle(com.womandroid.we.R.style.ImagePopupAnimation);
+            imagePopup.setAnimationStyle(R.style.ImagePopupAnimation);
 
-            final PhotoView imageView = popupView.findViewById(com.womandroid.we.R.id.photo_view);
-            final ProgressBar progressBar = popupView.findViewById(com.womandroid.we.R.id.chat_sdk_popup_image_progressbar);
-            final FloatingActionButton saveButton = popupView.findViewById(com.womandroid.we.R.id.floating_button);
+            final PhotoView imageView = popupView.findViewById(R.id.photo_view);
+            final ProgressBar progressBar = popupView.findViewById(R.id.chat_sdk_popup_image_progressbar);
+            final FloatingActionButton saveButton = popupView.findViewById(R.id.floating_button);
 
             saveButton.hide();
 
@@ -63,17 +64,17 @@ public class ImageMessageOnClickHandler {
                             if (bitmap != null) {
                                 String bitmapURL = MediaStore.Images.Media.insertImage(activity.getContentResolver(), bitmap, "" , "");
                                 if (bitmapURL != null) {
-                                    ToastHelper.show(activity, activity.getString(com.womandroid.we.R.string.image_saved));
+                                    ToastHelper.show(activity, activity.getString(R.string.image_saved));
                                 }
                                 else {
-                                    ToastHelper.show(activity, activity.getString(com.womandroid.we.R.string.image_save_failed));
+                                    ToastHelper.show(activity, activity.getString(R.string.image_save_failed));
                                 }
                             }
                         }, throwable -> ToastHelper.show(activity, throwable.getLocalizedMessage())));
 
 
                     }, throwable -> {
-                        ToastHelper.show(activity, com.womandroid.we.R.string.unable_to_fetch_image);
+                        ToastHelper.show(activity, R.string.unable_to_fetch_image);
                         imagePopup.dismiss();
                     });
 

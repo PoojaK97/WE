@@ -5,6 +5,7 @@ import android.content.Context;
 
 import java.util.List;
 
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.interfaces.ChatOption;
 import com.womandroid.we.chatSDK.core.interfaces.ChatOptionsDelegate;
 import com.womandroid.we.chatSDK.core.session.ChatSDK;
@@ -38,7 +39,7 @@ public class DialogChatOptionsHandler extends AbstractChatOptionsHandler {
 
         hasExecuted = false;
 
-        builder.setTitle(context.getString(com.womandroid.we.R.string.actions)).setItems(items, (dialogInterface, i1) -> {
+        builder.setTitle(context.getString(R.string.actions)).setItems(items, (dialogInterface, i1) -> {
             if(!hasExecuted) {
                 executeOption(options.get(i1));
             }
