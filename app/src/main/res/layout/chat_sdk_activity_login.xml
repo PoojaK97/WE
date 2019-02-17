@@ -24,7 +24,7 @@
                 android:layout_marginTop="70dp"
                 android:layout_marginRight="20dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_launcher_big" />
+                android:src="@drawable/ic_launcher_big1" />
 
             <EditText
                 android:id="@+id/chat_sdk_et_username"
