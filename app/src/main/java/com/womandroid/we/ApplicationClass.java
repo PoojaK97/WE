@@ -28,7 +28,7 @@ public class ApplicationClass extends Application {
         Configuration.Builder builder = new Configuration.Builder(context);
 //        config.firebaseRootPath("19_01_test");
 //        config.googleMaps("AIzaSyCwwtZrlY9Rl8paM0R6iDNBEit_iexQ1aE");
-//        config.publicRoomCreationEnabled(false);
+        builder.publicRoomCreationEnabled(true);
 //        config.pushNotificationSound("default");
 //
 // Perform any configuration steps (optional)

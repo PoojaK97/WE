@@ -22,31 +22,31 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
         ContactLinkDao.createTable(db, ifNotExists);
-        FollowerLinkDao.createTable(db, ifNotExists);
         LinkedAccountDao.createTable(db, ifNotExists);
-        MessageDao.createTable(db, ifNotExists);
-        MessageMetaValueDao.createTable(db, ifNotExists);
-        ReadReceiptUserLinkDao.createTable(db, ifNotExists);
-        ThreadDao.createTable(db, ifNotExists);
-        ThreadMetaValueDao.createTable(db, ifNotExists);
         UserDao.createTable(db, ifNotExists);
         UserMetaValueDao.createTable(db, ifNotExists);
+        MessageMetaValueDao.createTable(db, ifNotExists);
+        MessageDao.createTable(db, ifNotExists);
+        ThreadDao.createTable(db, ifNotExists);
+        ThreadMetaValueDao.createTable(db, ifNotExists);
         UserThreadLinkDao.createTable(db, ifNotExists);
+        FollowerLinkDao.createTable(db, ifNotExists);
+        ReadReceiptUserLinkDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
         ContactLinkDao.dropTable(db, ifExists);
-        FollowerLinkDao.dropTable(db, ifExists);
         LinkedAccountDao.dropTable(db, ifExists);
-        MessageDao.dropTable(db, ifExists);
-        MessageMetaValueDao.dropTable(db, ifExists);
-        ReadReceiptUserLinkDao.dropTable(db, ifExists);
-        ThreadDao.dropTable(db, ifExists);
-        ThreadMetaValueDao.dropTable(db, ifExists);
         UserDao.dropTable(db, ifExists);
         UserMetaValueDao.dropTable(db, ifExists);
+        MessageMetaValueDao.dropTable(db, ifExists);
+        MessageDao.dropTable(db, ifExists);
+        ThreadDao.dropTable(db, ifExists);
+        ThreadMetaValueDao.dropTable(db, ifExists);
         UserThreadLinkDao.dropTable(db, ifExists);
+        FollowerLinkDao.dropTable(db, ifExists);
+        ReadReceiptUserLinkDao.dropTable(db, ifExists);
     }
 
     /**
@@ -66,16 +66,16 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
         registerDaoClass(ContactLinkDao.class);
-        registerDaoClass(FollowerLinkDao.class);
         registerDaoClass(LinkedAccountDao.class);
-        registerDaoClass(MessageDao.class);
-        registerDaoClass(MessageMetaValueDao.class);
-        registerDaoClass(ReadReceiptUserLinkDao.class);
-        registerDaoClass(ThreadDao.class);
-        registerDaoClass(ThreadMetaValueDao.class);
         registerDaoClass(UserDao.class);
         registerDaoClass(UserMetaValueDao.class);
+        registerDaoClass(MessageMetaValueDao.class);
+        registerDaoClass(MessageDao.class);
+        registerDaoClass(ThreadDao.class);
+        registerDaoClass(ThreadMetaValueDao.class);
         registerDaoClass(UserThreadLinkDao.class);
+        registerDaoClass(FollowerLinkDao.class);
+        registerDaoClass(ReadReceiptUserLinkDao.class);
     }
 
     public DaoSession newSession() {

@@ -217,6 +217,8 @@ public class SearchActivity extends BaseActivity {
 
     public static void startSearchActivity (final Context context) {
         if (context != null) {
+
+
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
             final List<SearchActivityType> activities = new ArrayList<>(ChatSDK.ui().getSearchActivities());
