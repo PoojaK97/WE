@@ -54,6 +54,7 @@ public class EditProfileActivity extends BaseActivity {
     protected EditText locationEditText;
     protected EditText phoneNumberEditText;
     protected EditText emailEditText;
+    protected EditText occupationEditText;
     protected Button countryButton;
     protected Button logoutButton;
     protected HashMap<String, Object> userMeta;
@@ -98,6 +99,7 @@ public class EditProfileActivity extends BaseActivity {
         locationEditText = findViewById(R.id.etLocation);
         phoneNumberEditText = findViewById(R.id.etPhone);
         emailEditText = findViewById(R.id.etEmail);
+        occupationEditText = findViewById(R.id.etOccupation);
 
         countryButton = findViewById(R.id.btnCountry);
         logoutButton = findViewById(R.id.btnLogout);
@@ -110,6 +112,7 @@ public class EditProfileActivity extends BaseActivity {
         String phoneNumber = currentUser.getPhoneNumber();
         String email = currentUser.getEmail();
         String countryCode = currentUser.getCountryCode();
+        String occupation = currentUser.getOccupation();
 
         avatarImageView.setOnClickListener(view -> {
             if (ChatSDK.profilePictures() != null) {
@@ -169,6 +172,7 @@ public class EditProfileActivity extends BaseActivity {
         locationEditText.setText(location);
         phoneNumberEditText.setText(phoneNumber);
         emailEditText.setText(email);
+        occupationEditText.setText(occupation);
 
     }
 
@@ -223,6 +227,7 @@ public class EditProfileActivity extends BaseActivity {
         String availability = getAvailability().trim();
         String name = nameEditText.getText().toString().trim();
         String location = locationEditText.getText().toString().trim();
+        String occupation = occupationEditText.getText().toString().trim();
         String phoneNumber = phoneNumberEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
 
@@ -232,6 +237,7 @@ public class EditProfileActivity extends BaseActivity {
         currentUser.setLocation(location);
         currentUser.setPhoneNumber(phoneNumber);
         currentUser.setEmail(email);
+        currentUser.setOccupation(occupation);
 
         boolean changed = !userMeta.equals(currentUser.metaMap());
 //        boolean imageChanged = false;

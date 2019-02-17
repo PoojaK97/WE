@@ -49,6 +49,7 @@ public class ProfileFragment extends BaseFragment {
     protected ImageView availabilityImageView;
     protected TextView nameTextView;
     protected TextView emailTextView;
+    protected TextView occupationTextView;
     protected TextView statusTextView;
     protected TextView locationTextView;
     protected TextView phoneTextView;
@@ -116,6 +117,7 @@ public class ProfileFragment extends BaseFragment {
         locationTextView = mainView.findViewById(R.id.tvLocation);
         phoneTextView = mainView.findViewById(R.id.tvPhone);
         emailTextView = mainView.findViewById(R.id.tvEmail);
+        occupationTextView = mainView.findViewById(R.id.tvOccupation);
         followsTextView = mainView.findViewById(R.id.tvFollows);
         followedTextView = mainView.findViewById(R.id.tvFollowed);
         blockOrUnblockButton = mainView.findViewById(R.id.btnBlockOrUnblock);
@@ -289,6 +291,7 @@ public class ProfileFragment extends BaseFragment {
         setRowVisible(R.id.ivLocation, R.id.tvLocation, !StringChecker.isNullOrEmpty(user.getLocation()));
         setRowVisible(R.id.ivPhone, R.id.tvPhone, !StringChecker.isNullOrEmpty(user.getPhoneNumber()));
         setRowVisible(R.id.ivEmail, R.id.tvEmail, !StringChecker.isNullOrEmpty(user.getEmail()));
+        setRowVisible(R.id.ivOccupation, R.id.tvOccupation, !StringChecker.isNullOrEmpty(user.getOccupation()));
         setRowVisible(R.id.ivFollows, R.id.tvFollows, !StringChecker.isNullOrEmpty(user.getPresenceSubscription()));
         setRowVisible(R.id.ivFollowed, R.id.tvFollowed, !StringChecker.isNullOrEmpty(user.getPresenceSubscription()));
 
@@ -350,6 +353,9 @@ public class ProfileFragment extends BaseFragment {
 
         // Email
         setViewText(emailTextView, getUser().getEmail());
+
+        // Occupation
+        setViewText(occupationTextView, getUser().getOccupation());
 
 //        String presenceSubscription = getUser().getPresenceSubscription();
 //

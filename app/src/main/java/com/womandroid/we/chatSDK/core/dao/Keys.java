@@ -68,5 +68,7 @@ public class Keys {
     public static final String Location = "location";
     public static final String DateOfBirth = "date-of-birth";
     public static final String Status = "status";
+    public static final String Occupation = "occupation";
+
 
 }
