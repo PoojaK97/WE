@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.womandroid.we.R;
 import com.womandroid.we.chatSDK.core.dao.User;
 import com.womandroid.we.chatSDK.core.dao.Thread;
 import com.womandroid.we.chatSDK.core.session.ChatSDK;
@@ -30,7 +31,7 @@ public class ProfileActivity extends BaseActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.womandroid.we.R.layout.chat_sdk_profile_activity);
+        setContentView(R.layout.chat_sdk_activity_profile);
 
         String userEntityID = getIntent().getStringExtra(InterfaceManager.USER_ENTITY_ID);
 
